@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task card item</title>
+    <!-- Material Symbols and icons link -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <!-- Google fonts link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/relativeTime.js"
+      defer
+    ></script>
+    <script defer>
+      // This activates the "fromNow()" and "toNow()" functions
+      dayjs.extend(window.dayjs_plugin_relativeTime);
+    </script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <section id="task-container" class="container">
+      <article class="card priority-high" data-due="2026-04-17T15:00:00">
+        <header class="card-header">
+          <div class="status-group">
+            <input
+              type="checkbox""
+              name="task-select"
+              id="task-select"
+              aria-label="Select task"
+            />
+            <span class="badge status-in-progress">In Progress</span>
+            <!-- <span class="badge badge-priority">High Priority</span> -->
+          </div>
+
+          <div class="action-icons">
+            <button class="edit" aria-label="Edit task">
+              <!-- <span class="material-symbols-outlined"> edit </span> -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#e3e3e3"
+              >
+                <path
+                  d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z"
+                />
+              </svg>
+            </button>
+            <button class="delete" aria-label="Delete task">
+              <!-- <span class="material-symbols-outlined"> delete </span> -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#e3e3e3"
+                class="material-symbols-outlined"
+              >
+                <path
+                  d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"
+                />
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <div class="card-content">
+          <div class="title">
+            <span class="sr-only">Priority: High</span>
+            <h1>Patch Security Vulnerability: Auth-Service</h1>
+            <button class="more-less">See More</button>
+          </div>
+          <p>
+            Investigating a credential stuffing vulnerability reported in the
+            login module. Need to implement rate limiting and update the CORS
+            policy immediately to prevent unauthorized access.
+          </p>
+        </div>
+
+        <section class="card-meta" aria-label="Deadline and Tags">
+          <div class="timeline-info">
+            <div class="date-info info">
+              <div class="icon">
+                <!-- <span class="material-symbols-outlined"> calendar_today </span -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#e3e3e3"
+                >
+                  <path
+                    d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <span class="label">Due Date</span>
+                <time datetime="2023-10-24">April 17, 2026</time>
+              </div>
+            </div>
+
+            <div class="time-remaining alert info">
+              <div class="icon">
+                <!-- <span class="material-symbols-outlined"> schedule </span> -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#e3e3e3"
+                  class="time-critical"
+                >
+                  <path
+                    d="m612-292 56-56-148-148v-184h-80v216l172 172ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"
+                  />
+                </svg>
+              </div>
+              <div class="time-remaining-text">
+                <span class="label">Time Remaining</span>
+                <span class="time-left time-critical">45 minutes left</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <span class="label">Classification</span>
+            <ul class="classification-tags" aria-label="Classifications">
+              <li><span class="tag">#Security</span></li>
+              <li><span class="tag">#Urgent</span></li>
+              <li><span class="tag">#Backend</span></li>
+            </ul>
+          </div>
+        </section>
+      </article>
+
+      <!-- Second Card -->
+
+      <article class="card priority-medium" data-due="2026-04-21T09:00:00">
+        <header class="card-header">
+          <div class="status-group">
+            <input
+              type="checkbox"
+              name="task-select"
+              id="task-select"
+              aria-label="Select task"
+            />
+            <span class="badge status-pending">Pending</span>
+            <!-- <span class="badge badge-priority">High Priority</span> -->
+          </div>
+
+          <div class="action-icons">
+            <button class="edit" aria-label="Edit task">
+              <!-- <span class="material-symbols-outlined"> edit </span> -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#e3e3e3"
+              >
+                <path
+                  d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z"
+                />
+              </svg>
+            </button>
+            <button class="delete" aria-label="Delete task">
+              <!-- <span class="material-symbols-outlined"> delete </span> -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#e3e3e3"
+                class="material-symbols-outlined"
+              >
+                <path
+                  d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"
+                />
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <div class="card-content">
+          <div class="title">
+            <span class="sr-only">Priority: Medium</span>
+            <h1>Design System Audit & Brand Alignment</h1>
+            <button class="more-less">See More</button>
+          </div>
+          <p>
+            Reviewing current UI components against the updated 2026 brand
+            guidelines. Focus on ensuring the saturated green primary theme is
+            consistent across all navigation elements.
+          </p>
+        </div>
+
+        <section class="card-meta" aria-label="Deadline and Tags">
+          <div class="timeline-info">
+            <div class="date-info info">
+              <div class="icon">
+                <!-- <span class="material-symbols-outlined"> calendar_today </span -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#e3e3e3"
+                >
+                  <path
+                    d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <span class="label">Due Date</span>
+                <time datetime="2023-10-24">April 21, 2026</time>
+              </div>
+            </div>
+
+            <div class="time-remaining alert info">
+              <div class="icon">
+                <!-- <span class="material-symbols-outlined"> schedule </span> -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#e3e3e3"
+                  class="time-warning"
+                >
+                  <path
+                    d="m612-292 56-56-148-148v-184h-80v216l172 172ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"
+                  />
+                </svg>
+              </div>
+              <div class="time-remaining-text">
+                <span class="label">Time Remaining</span>
+                <span class="time-left time-warning">Due in 4 days</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <span class="label">Classification</span>
+            <ul class="classification-tags" aria-label="Classifications">
+              <li><span class="tag">#Design</span></li>
+              <li><span class="tag">#UI-UX</span></li>
+              <li><span class="tag">#Branding</span></li>
+            </ul>
+          </div>
+        </section>
+      </article>
+
+      <!-- Third Card -->
+
+      <article class="card priority-low" data-due="2026-05-01T17:00:00">
+        <header class="card-header">
+          <div class="status-group">
+            <input
+              type="checkbox"
+              name="task-select"
+              id="task-select"
+              aria-label="Select task"
+            />
+            <span class="badge status-pending">Pending</span>
+            <!-- <span class="badge badge-priority">High Priority</span> -->
+          </div>
+
+          <div class="action-icons">
+            <button class="edit" aria-label="Edit task">
+              <!-- <span class="material-symbols-outlined"> edit </span> -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#e3e3e3"
+              >
+                <path
+                  d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z"
+                />
+              </svg>
+            </button>
+            <button class="delete" aria-label="Delete task">
+              <!-- <span class="material-symbols-outlined"> delete </span> -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#e3e3e3"
+                class="material-symbols-outlined"
+              >
+                <path
+                  d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"
+                />
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <div class="card-content">
+          <div class="title">
+            <span class="sr-only">Priority: Low</span>
+            <h1>Refactor Task Card Component Logic</h1>
+            <button class="more-less">See More</button>
+          </div>
+          <p>
+            Clean up the conditional rendering logic within the TaskCard.js
+            file. We need to move the priority color mapping into a separate
+            utility function to make the component more readable and easier to
+            test as the UI grows.
+          </p>
+        </div>
+
+        <section class="card-meta" aria-label="Deadline and Tags">
+          <div class="timeline-info">
+            <div class="date-info info">
+              <div class="icon">
+                <!-- <span class="material-symbols-outlined"> calendar_today </span -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#e3e3e3"
+                >
+                  <path
+                    d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <span class="label">Due Date</span>
+                <time datetime="2023-10-24">May 1, 2026</time>
+              </div>
+            </div>
+
+            <div class="time-remaining alert info">
+              <div class="icon">
+                <!-- <span class="material-symbols-outlined"> schedule </span> -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#e3e3e3"
+                  class="time-safe"
+                >
+                  <path
+                    d="m612-292 56-56-148-148v-184h-80v216l172 172ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"
+                  />
+                </svg>
+              </div>
+              <div class="time-remaining-text">
+                <span class="label">Time Remaining</span>
+                <span class="time-left time-safe">Due in 2 weeks</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <span class="label">Classification</span>
+            <ul class="classification-tags" aria-label="Classifications">
+              <li><span class="tag">#Refactor</span></li>
+              <li><span class="tag">#Maintenance</span></li>
+              <li><span class="tag">#Frontend</span></li>
+            </ul>
+          </div>
+        </section>
+      </article>
+    </section>
+  </body>
+</html>
