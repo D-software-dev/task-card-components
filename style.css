@@ -101,13 +101,16 @@ svg.time-critical {
 }
 
 .container {
-  display: grid;
+  /* display: grid;
   justify-items: center;
   align-items: start;
-  grid-template-columns: repeat(auto-fit, minmax(540px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(540px, 1fr)); */
+  display: flex;
+  align-items: center;
   gap: 2em;
-  min-height: 100vh;
-  width: 90%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* width: 100%; */
   margin-inline: auto;
   background-color: var(--bg-color);
   padding: 5em 0.5em;
@@ -118,8 +121,8 @@ svg.time-critical {
   font-optical-sizing: auto;
   font-style: normal;
   /* width: min(85%, 500px); */
-  width: clamp(300px, 100%, 500px);
-  /* margin-inline: auto; */
+  width: clamp(300px, 100%, 450px);
+  margin-inline: auto;
   background: var(--card-bg);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -129,6 +132,12 @@ svg.time-critical {
   border-left-style: solid;
   container-type: inline-size;
   container-name: task-card;
+}
+
+.title .title-content {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
 }
 
 /* The 'Completed' modifier class */
@@ -159,6 +168,10 @@ svg.time-critical {
   user-select: none;
   -webkit-user-select: none; 
   -ms-user-select: none;  */
+}
+
+.card.is-completed .title .title-content svg {
+  fill: var(--status-done-text);
 }
 
 /* Header: Status and Actions. */
@@ -368,8 +381,29 @@ svg.time-critical {
   }
 }
 
+@media screen and (max-width: 1200px) {
+  body {
+    margin-inline: 1em;
+  }
+  .container {
+    justify-content: center;
+  }
+}
+
 @media screen and (max-width: 900px) {
   .card {
     width: min(85%, 500px);
+  }
+
+  .card-content h1 {
+    font-size: 1.25rem;
+  }
+
+  .card-content p {
+    font-size: 0.75rem;
+  }
+
+  time {
+    font-size: 0.75rem;
   }
 }

@@ -26,31 +26,42 @@
       src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/relativeTime.js"
       defer
     ></script>
-    <script defer>
-      // This activates the "fromNow()" and "toNow()" functions
-      dayjs.extend(window.dayjs_plugin_relativeTime);
-    </script>
     <script src="script.js" defer></script>
   </head>
   <body>
     <section id="task-container" class="container">
-      <article class="card priority-high" data-due="2026-04-17T15:00:00">
+      <article
+        class="card priority-high"
+        data-testid="test-todo-card"
+        data-due="2026-04-17T15:00:00"
+      >
         <header class="card-header">
           <div class="status-group">
             <input
-              type="checkbox""
+              type="checkbox"
               name="task-select"
               id="task-select"
-              aria-label="Select task"
+              aria-label="Mark task as completed"
+              data-testid="test-todo-complete-toggle"
             />
-            <span class="badge status-in-progress">In Progress</span>
+            <span
+              data-testid="test-todo-status"
+              class="badge status-in-progress"
+              >In Progress</span
+            >
             <!-- <span class="badge badge-priority">High Priority</span> -->
           </div>
 
           <div class="action-icons">
-            <button class="edit" aria-label="Edit task">
+            <button
+              data-testid="test-todo-edit-button"
+              class="edit"
+              aria-label="Edit task"
+            >
               <!-- <span class="material-symbols-outlined"> edit </span> -->
               <svg
+                aria-hidden="true"
+                focusable="false"
                 xmlns="http://www.w3.org/2000/svg"
                 height="24px"
                 viewBox="0 -960 960 960"
@@ -62,9 +73,15 @@
                 />
               </svg>
             </button>
-            <button class="delete" aria-label="Delete task">
+            <button
+              data-testid="test-todo-delete-button"
+              class="delete"
+              aria-label="Delete task"
+            >
               <!-- <span class="material-symbols-outlined"> delete </span> -->
               <svg
+                aria-hidden="true"
+                focusable="false"
                 xmlns="http://www.w3.org/2000/svg"
                 height="24px"
                 viewBox="0 -960 960 960"
@@ -83,10 +100,26 @@
         <div class="card-content">
           <div class="title">
             <span class="sr-only">Priority: High</span>
-            <h1>Patch Security Vulnerability: Auth-Service</h1>
-            <button class="more-less">See More</button>
+            <div class="title-content high-priority">
+              <h1 data-testid="test-todo-title">
+                Patch Security Vulnerability: Auth-Service
+              </h1>
+            </div>
+            <div id="live-announcer" class="sr-only" role="status"></div>
+            <button
+              class="more-less toggle-btn"
+              aria-expanded="false"
+              aria-controls="task-details-1"
+            >
+              See More
+            </button>
           </div>
-          <p>
+          <p
+            data-testid="test-todo-description"
+            id="task-details-1"
+            class="task-details"
+            hidden
+          >
             Investigating a credential stuffing vulnerability reported in the
             login module. Need to implement rate limiting and update the CORS
             policy immediately to prevent unauthorized access.
@@ -99,6 +132,8 @@
               <div class="icon">
                 <!-- <span class="material-symbols-outlined"> calendar_today </span -->
                 <svg
+                  aria-hidden="true"
+                  focusable="false"
                   xmlns="http://www.w3.org/2000/svg"
                   height="24px"
                   viewBox="0 -960 960 960"
@@ -112,7 +147,9 @@
               </div>
               <div>
                 <span class="label">Due Date</span>
-                <time datetime="2023-10-24">April 17, 2026</time>
+                <time datetime="2023-10-24" data-testid="test-todo-due-date"
+                  >April 17, 2026</time
+                >
               </div>
             </div>
 
@@ -120,6 +157,8 @@
               <div class="icon">
                 <!-- <span class="material-symbols-outlined"> schedule </span> -->
                 <svg
+                  aria-hidden="true"
+                  focusable="false"
                   xmlns="http://www.w3.org/2000/svg"
                   height="24px"
                   viewBox="0 -960 960 960"
@@ -134,17 +173,41 @@
               </div>
               <div class="time-remaining-text">
                 <span class="label">Time Remaining</span>
-                <span class="time-left time-critical">45 minutes left</span>
+                <!-- <span class="time-left time-critical" style="visibility: hidden;">00 months ago</span> -->
+                <time
+                  class="time-left time-critical"
+                  style="min-width: 10ch; display: inline-block"
+                  aria-live="polite"
+                  data-testid="test-todo-time-remaining"
+                >
+                  &nbsp;
+                </time>
               </div>
             </div>
           </div>
 
           <div>
             <span class="label">Classification</span>
-            <ul class="classification-tags" aria-label="Classifications">
-              <li><span class="tag">#Security</span></li>
-              <li><span class="tag">#Urgent</span></li>
-              <li><span class="tag">#Backend</span></li>
+            <ul
+              data-testid="test-todo-tags"
+              class="classification-tags"
+              aria-label="Classifications"
+            >
+              <li>
+                <span class="tag" data-testid="test-todo-tag-security"
+                  >#Security</span
+                >
+              </li>
+              <li>
+                <span class="tag" data-testid="test-todo-tag-urgent"
+                  >#Urgent</span
+                >
+              </li>
+              <li>
+                <span class="tag" data-testid="test-todo-tag-backend"
+                  >#Backend</span
+                >
+              </li>
             </ul>
           </div>
         </section>
@@ -152,7 +215,11 @@
 
       <!-- Second Card -->
 
-      <article class="card priority-medium" data-due="2026-04-21T09:00:00">
+      <article
+        data-testid="test-todo-card"
+        class="card priority-medium"
+        data-due="2026-04-21T09:00:00"
+      >
         <header class="card-header">
           <div class="status-group">
             <input
@@ -160,15 +227,24 @@
               name="task-select"
               id="task-select"
               aria-label="Select task"
+              data-testid="test-todo-complete-toggle"
             />
-            <span class="badge status-pending">Pending</span>
+            <span data-testid="test-todo-status" class="badge status-pending"
+              >Pending</span
+            >
             <!-- <span class="badge badge-priority">High Priority</span> -->
           </div>
 
           <div class="action-icons">
-            <button class="edit" aria-label="Edit task">
+            <button
+              data-testid="test-todo-edit-button"
+              class="edit"
+              aria-label="Edit task"
+            >
               <!-- <span class="material-symbols-outlined"> edit </span> -->
               <svg
+                aria-hidden="true"
+                focusable="false"
                 xmlns="http://www.w3.org/2000/svg"
                 height="24px"
                 viewBox="0 -960 960 960"
@@ -180,9 +256,15 @@
                 />
               </svg>
             </button>
-            <button class="delete" aria-label="Delete task">
+            <button
+              data-testid="test-todo-delete-button"
+              class="delete"
+              aria-label="Delete task"
+            >
               <!-- <span class="material-symbols-outlined"> delete </span> -->
               <svg
+                aria-hidden="true"
+                focusable="false"
                 xmlns="http://www.w3.org/2000/svg"
                 height="24px"
                 viewBox="0 -960 960 960"
@@ -201,10 +283,25 @@
         <div class="card-content">
           <div class="title">
             <span class="sr-only">Priority: Medium</span>
-            <h1>Design System Audit & Brand Alignment</h1>
-            <button class="more-less">See More</button>
+            <div class="title-content medium-priority" aria-live="polite">
+              <h1 data-testid="test-todo-title">
+                Design System Audit & Brand Alignment
+              </h1>
+            </div>
+            <button
+              class="more-less toggle-btn"
+              aria-expanded="false"
+              aria-controls="task-details-2"
+            >
+              See More
+            </button>
           </div>
-          <p>
+          <p
+            data-testid="test-todo-description"
+            id="task-details-2"
+            class="task-details"
+            hidden
+          >
             Reviewing current UI components against the updated 2026 brand
             guidelines. Focus on ensuring the saturated green primary theme is
             consistent across all navigation elements.
@@ -217,6 +314,8 @@
               <div class="icon">
                 <!-- <span class="material-symbols-outlined"> calendar_today </span -->
                 <svg
+                  aria-hidden="true"
+                  focusable="false"
                   xmlns="http://www.w3.org/2000/svg"
                   height="24px"
                   viewBox="0 -960 960 960"
@@ -230,7 +329,9 @@
               </div>
               <div>
                 <span class="label">Due Date</span>
-                <time datetime="2023-10-24">April 21, 2026</time>
+                <time data-testid="test-todo-due-date" datetime="2023-10-24"
+                  >April 21, 2026</time
+                >
               </div>
             </div>
 
@@ -238,6 +339,8 @@
               <div class="icon">
                 <!-- <span class="material-symbols-outlined"> schedule </span> -->
                 <svg
+                  aria-hidden="true"
+                  focusable="false"
                   xmlns="http://www.w3.org/2000/svg"
                   height="24px"
                   viewBox="0 -960 960 960"
@@ -252,17 +355,41 @@
               </div>
               <div class="time-remaining-text">
                 <span class="label">Time Remaining</span>
-                <span class="time-left time-warning">Due in 4 days</span>
+                <!-- <span class="time-left time-warning" style="visibility: hidden;">00 months ago</span> -->
+                <time
+                  class="time-left time-warning"
+                  style="min-width: 10ch; display: inline-block"
+                  aria-live="polite"
+                  data-testid="test-todo-time-remaining"
+                >
+                  &nbsp;
+                </time>
               </div>
             </div>
           </div>
 
           <div>
             <span class="label">Classification</span>
-            <ul class="classification-tags" aria-label="Classifications">
-              <li><span class="tag">#Design</span></li>
-              <li><span class="tag">#UI-UX</span></li>
-              <li><span class="tag">#Branding</span></li>
+            <ul
+              data-testid="test-todo-tags"
+              class="classification-tags"
+              aria-label="Classifications"
+            >
+              <li>
+                <span data-testid="test-todo-tag-design" class="tag"
+                  >#Design</span
+                >
+              </li>
+              <li>
+                <span data-testid="test-todo-tag-ui-ux" class="tag"
+                  >#UI-UX</span
+                >
+              </li>
+              <li>
+                <span data-testid="test-todo-tag-branding" class="tag"
+                  >#Branding</span
+                >
+              </li>
             </ul>
           </div>
         </section>
@@ -270,7 +397,11 @@
 
       <!-- Third Card -->
 
-      <article class="card priority-low" data-due="2026-05-01T17:00:00">
+      <article
+        data-testid="test-todo-card"
+        class="card priority-low"
+        data-due="2026-05-01T17:00:00"
+      >
         <header class="card-header">
           <div class="status-group">
             <input
@@ -278,15 +409,24 @@
               name="task-select"
               id="task-select"
               aria-label="Select task"
+              data-testid="test-todo-complete-toggle"
             />
-            <span class="badge status-pending">Pending</span>
+            <span data-testid="test-todo-priority" class="badge status-pending"
+              >Pending</span
+            >
             <!-- <span class="badge badge-priority">High Priority</span> -->
           </div>
 
           <div class="action-icons">
-            <button class="edit" aria-label="Edit task">
+            <button
+              data-testid="test-todo-edit-button"
+              class="edit"
+              aria-label="Edit task"
+            >
               <!-- <span class="material-symbols-outlined"> edit </span> -->
               <svg
+                aria-hidden="true"
+                focusable="false"
                 xmlns="http://www.w3.org/2000/svg"
                 height="24px"
                 viewBox="0 -960 960 960"
@@ -298,9 +438,15 @@
                 />
               </svg>
             </button>
-            <button class="delete" aria-label="Delete task">
+            <button
+              data-testid="test-todo-delete-button"
+              class="delete"
+              aria-label="Delete task"
+            >
               <!-- <span class="material-symbols-outlined"> delete </span> -->
               <svg
+                aria-hidden="true"
+                focusable="false"
                 xmlns="http://www.w3.org/2000/svg"
                 height="24px"
                 viewBox="0 -960 960 960"
@@ -319,10 +465,20 @@
         <div class="card-content">
           <div class="title">
             <span class="sr-only">Priority: Low</span>
-            <h1>Refactor Task Card Component Logic</h1>
-            <button class="more-less">See More</button>
+            <div class="title-content low-priority" aria-live="polite">
+              <h1 data-testid="test-todo-title">
+                Refactor Task Card Component Logic
+              </h1>
+            </div>
+            <button
+              class="more-less toggle-btn"
+              aria-expanded="false"
+              aria-controls="task-details-3"
+            >
+              See More
+            </button>
           </div>
-          <p>
+          <p data-testid="test-todo-description" id="task-details-3">
             Clean up the conditional rendering logic within the TaskCard.js
             file. We need to move the priority color mapping into a separate
             utility function to make the component more readable and easier to
@@ -336,6 +492,8 @@
               <div class="icon">
                 <!-- <span class="material-symbols-outlined"> calendar_today </span -->
                 <svg
+                  aria-hidden="true"
+                  focusable="false"
                   xmlns="http://www.w3.org/2000/svg"
                   height="24px"
                   viewBox="0 -960 960 960"
@@ -349,7 +507,9 @@
               </div>
               <div>
                 <span class="label">Due Date</span>
-                <time datetime="2023-10-24">May 1, 2026</time>
+                <time data-testid="test-todo-due-date" datetime="2023-10-24"
+                  >May 1, 2026</time
+                >
               </div>
             </div>
 
@@ -357,6 +517,8 @@
               <div class="icon">
                 <!-- <span class="material-symbols-outlined"> schedule </span> -->
                 <svg
+                  aria-hidden="true"
+                  focusable="false"
                   xmlns="http://www.w3.org/2000/svg"
                   height="24px"
                   viewBox="0 -960 960 960"
@@ -371,17 +533,40 @@
               </div>
               <div class="time-remaining-text">
                 <span class="label">Time Remaining</span>
-                <span class="time-left time-safe">Due in 2 weeks</span>
+                <time
+                  class="time-left time-warning"
+                  style="min-width: 10ch; display: inline-block"
+                  aria-live="polite"
+                  data-testid="test-todo-time-remaining"
+                >
+                  &nbsp;
+                </time>
               </div>
             </div>
           </div>
 
           <div>
             <span class="label">Classification</span>
-            <ul class="classification-tags" aria-label="Classifications">
-              <li><span class="tag">#Refactor</span></li>
-              <li><span class="tag">#Maintenance</span></li>
-              <li><span class="tag">#Frontend</span></li>
+            <ul
+              data-testid="test-todo-tags"
+              class="classification-tags"
+              aria-label="Classifications"
+            >
+              <li>
+                <span data-testid="test-todo-tag-refactor" class="tag"
+                  >#Refactor</span
+                >
+              </li>
+              <li>
+                <span data-testid="test-todo-tag-maintenance" class="tag"
+                  >#Maintenance</span
+                >
+              </li>
+              <li>
+                <span data-testid="test-todo-tag-frontend" class="tag"
+                  >#Frontend</span
+                >
+              </li>
             </ul>
           </div>
         </section>
