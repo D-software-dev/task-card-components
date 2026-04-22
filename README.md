@@ -17,7 +17,8 @@ This project primarily tests accessibility and responsiveness, so its features a
 ## Challenges
 
 - Coming up with a design for the project posed a decent challenge. I ended up using google's stitch (AI UI/UX tool) as my primary inspiration.
-- Getting the cards to seamlessly respond to device width automatically (i.e without specific media queries)
+- Getting the cards to seamlessly respond to device width automatically (i.e without specific media queries).
+- Making UI updates accessible and compatible with Web Content Accessibility Guidelines (WCAG).
 
 ## HOW TO ACCESS THE PLATFORM
 
@@ -29,6 +30,6 @@ Picked up a couple of abilities and concepts building this project. Such as:
 
 - Working with libraries without framework.
 - Working with AI to improve productivity.
-- Event Delegation in Javascript
+- Event Delegation in Javascript.
 - The target.closest() method on the event object.
-- Web Content Accessibility Guidelines (WCAG)
+- Web Content Accessibility Guidelines (WCAG).
