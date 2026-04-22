@@ -3,10 +3,17 @@ dayjs.extend(window.dayjs_plugin_relativeTime);
 // Attach this listener to your container (the parent of all cards)
 const container = document.getElementById("task-container");
 const seeBtn = document.querySelectorAll(".more-less");
-const todoTitleWrappers = document.querySelectorAll(".title .title-content");
+// const todoTitleWrappers = document.querySelectorAll(".title .title-content");
 const liveAnnouncer = document.getElementById("live-announcer");
 // Select all buttons with the toggle class
 const toggleButtons = document.querySelectorAll(".toggle-btn");
+
+// Wrap heavy initialization in requestIdleCallback
+// This tells the browser: "Do this only when you aren't busy with important stuff"
+window.requestIdleCallback(() => {
+  setupPriorityIcons();
+  updateAllTimestamps();
+});
 
 toggleButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -31,50 +38,74 @@ const dateTimes = [
   "2026-05-01T17:00:00",
 ]; // Example due dates
 
-todoTitleWrappers.forEach((wrapper, index) => {
-  if (wrapper.classList.contains("high-priority")) {
-    wrapper.insertAdjacentHTML(
-      "afterbegin",
-      `<svg data-testid="test-todo-priority" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="var(--priority-high)"><path d="m282-225-42-42 240-240 240 240-42 42-198-198-198 198Zm0-253-42-42 240-240 240 240-42 42-198-198-198 198Z"/></svg>`,
-    );
-  } else if (wrapper.classList.contains("medium-priority")) {
-    wrapper.insertAdjacentHTML(
-      "afterbegin",
-      `<svg data-testid="test-todo-priority" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="var(--priority-medium)"><path d="M480-554 283-357l-43-43 240-240 240 240-43 43-197-197Z"/></svg>`,
-    );
-  } else if (wrapper.classList.contains("low-priority")) {
-    wrapper.insertAdjacentHTML(
-      "afterbegin",
-      `<svg data-testid="test-todo-priority" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="var(--priority-low)"><path d="M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z"/></svg>`,
-    );
-  }
-});
+function setupPriorityIcons() {
+  const todoTitleWrappers = document.querySelectorAll(".title .title-content");
+  // Optimization: Use a DocumentFragment or pre-defined strings to minimize reflow
+  todoTitleWrappers.forEach((wrapper) => {
+    let svgPath = "";
+    let color = "";
 
-dateTimes.forEach((dueDate) => {
-  const timeData = getTimeRemaining(dueDate);
-  // Find the corresponding card for this due date (you may need to adjust this logic based on your actual HTML structure)
-  const card = document.querySelector(`.card[data-due="${dueDate}"]`);
-  if (card) {
-    const timeElement = card.querySelector(".time-remaining");
-    timeElement.querySelector("time.time-left").textContent = timeData.text;
-    timeElement.querySelector("time.time-left").style.color = timeData.color;
-    timeElement.querySelector("svg").style.fill = timeData.color;
-  }
-});
+    if (wrapper.classList.contains("high-priority")) {
+      svgPath =
+        "m282-225-42-42 240-240 240 240-42 42-198-198-198 198Zm0-253-42-42 240-240 240 240-42 42-198-198-198 198Z";
+      color = "var(--priority-high)";
+    } else if (wrapper.classList.contains("medium-priority")) {
+      svgPath = "M480-554 283-357l-43-43 240-240 240 240-43 43-197-197Z";
+      color = "var(--priority-medium)";
+    } else if (wrapper.classList.contains("low-priority")) {
+      svgPath = "M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z";
+      color = "var(--priority-low)";
+    }
+    // ... add your other conditions here ...
 
-// Update time data every minute to keep it accurate
-setInterval(() => {
+    if (svgPath) {
+      wrapper.insertAdjacentHTML(
+        "afterbegin",
+        `<svg data-testid="test-todo-priority" height="48px" viewBox="0 -960 960 960" width="48px" fill="${color}"><path d="${svgPath}"/></svg>`,
+      );
+    }
+  });
+}
+
+// todoTitleWrappers.forEach((wrapper, index) => {
+//   if (wrapper.classList.contains("high-priority")) {
+//     wrapper.insertAdjacentHTML(
+//       "afterbegin",
+//       `<svg data-testid="test-todo-priority" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="var(--priority-high)"><path d="m282-225-42-42 240-240 240 240-42 42-198-198-198 198Zm0-253-42-42 240-240 240 240-42 42-198-198-198 198Z"/></svg>`,
+//     );
+//   } else if (wrapper.classList.contains("medium-priority")) {
+//     wrapper.insertAdjacentHTML(
+//       "afterbegin",
+//       `<svg data-testid="test-todo-priority" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="var(--priority-medium)"><path d="M480-554 283-357l-43-43 240-240 240 240-43 43-197-197Z"/></svg>`,
+//     );
+//   } else if (wrapper.classList.contains("low-priority")) {
+//     wrapper.insertAdjacentHTML(
+//       "afterbegin",
+//       `<svg data-testid="test-todo-priority" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="var(--priority-low)"><path d="M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z"/></svg>`,
+//     );
+//   }
+// });
+
+function updateAllTimestamps() {
   dateTimes.forEach((dueDate) => {
     const timeData = getTimeRemaining(dueDate);
+    // Optimization: Target specific cards using ID or data-attribute directly
     const card = document.querySelector(`.card[data-due="${dueDate}"]`);
     if (card) {
       const timeElement = card.querySelector(".time-remaining");
-      timeElement.querySelector("span.time-left").textContent = timeData.text;
-      timeElement.querySelector("span.time-left").style.color = timeData.color;
-      timeElement.querySelector("svg").style.fill = timeData.color;
+      const timeLeft = timeElement.querySelector("time.time-left");
+      const icon = timeElement.querySelector("svg");
+
+      // Batch DOM updates
+      timeLeft.textContent = timeData.text;
+      timeLeft.style.color = timeData.color;
+      icon.style.fill = timeData.color;
     }
   });
-}, 60000); // Update every 60 seconds
+}
+
+// Update time data every minute to keep it accurate
+setInterval(updateAllTimestamps, 60000); // Update every 60 seconds
 
 seeBtn.forEach((btn) => {
   btn.addEventListener("click", (event) => {
@@ -91,28 +122,6 @@ seeBtn.forEach((btn) => {
     }
   });
 });
-
-let currentStatus;
-
-// container.addEventListener("change", (event) => {
-//   if (event.target.type === "checkbox") {
-//     // Find the closest card parent
-//     const card = event.target.closest(".card");
-//     const statusPill = card.querySelector(".badge");
-
-//     // Get the current status from the status pill
-
-//     if (event.target.checked) {
-//       currentStatus = statusPill.textContent.trim();
-//       card.classList.add("is-completed");
-//       statusPill.textContent = "DONE";
-//     } else {
-//       card.classList.remove("is-completed");
-//       // Logic to revert to the old status (e.g., 'IN PROGRESS')
-//       statusPill.textContent = currentStatus;
-//     }
-//   }
-// });
 
 container.addEventListener("change", (event) => {
   // 1. Ensure we are only acting on checkboxes

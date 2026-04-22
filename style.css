@@ -400,10 +400,19 @@ svg.time-critical {
   }
 
   .card-content p {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .label {
+    font-size: 0.65rem;
+    margin-bottom: 0;
+  }
+
+  .label.class {
+    margin-block-end: 0.5em;
   }
 
   time {
-    font-size: 0.75rem;
+    font-size: 0.83rem;
   }
 }
