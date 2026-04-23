@@ -31,5 +31,5 @@ Picked up a couple of abilities and concepts building this project. Such as:
 - Working with libraries without framework.
 - Working with AI to improve productivity.
 - Event Delegation in Javascript.
-- The target.closest() method on the event object.
+- The closest() method in Javascript.
 - Web Content Accessibility Guidelines (WCAG).
