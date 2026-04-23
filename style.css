@@ -170,6 +170,12 @@ svg.time-critical {
   -ms-user-select: none;  */
 }
 
+/* Hide the 'Due date' slightly */
+.card.is-completed .date-info {
+  opacity: 0.55;
+  filter: grayscale(100%);
+}
+
 .card.is-completed .title .title-content svg {
   fill: var(--status-done-text);
 }
