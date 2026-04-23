@@ -225,6 +225,13 @@ svg.time-critical {
   transition: color 0.2s ease;
 }
 
+.action-icons svg {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
 .action-icons button:hover {
   background: hsl(194, 30%, 92%);
   border-radius: 4px;

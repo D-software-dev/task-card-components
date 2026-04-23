@@ -115,6 +115,14 @@ container.addEventListener("click", (event) => {
       button.setAttribute("aria-expanded", "false");
       content.hidden = true;
     }
+  } else if (
+    event.target.classList.contains("edit") ||
+    event.target.classList.contains("delete")
+  ) {
+    // Handle edit and delete button clicks here
+    alert(
+      `${event.target.classList.contains("edit") ? "Edit" : "Delete"} button clicked.`,
+    );
   }
 });
 
