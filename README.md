@@ -1,4 +1,4 @@
-# Task Card Component
+# Task Card Components
 
 A responsive set of task (todo) cards, where individuals can check todo's and mark them as done.
 
