@@ -105,6 +105,7 @@
           <div class="title">
             <span class="sr-only">Priority: High</span>
             <div class="title-content high-priority">
+              <span class="icon"></span>
               <h1 data-testid="test-todo-title">
                 Patch Security Vulnerability: Auth-Service
               </h1>
@@ -287,11 +288,13 @@
         <div class="card-content">
           <div class="title">
             <span class="sr-only">Priority: Medium</span>
-            <div class="title-content medium-priority" aria-live="polite">
+            <div class="title-content medium-priority">
+              <span class="icon"></span>
               <h1 data-testid="test-todo-title">
                 Design System Audit & Brand Alignment
               </h1>
             </div>
+            <div id="live-announcer" class="sr-only" role="status"></div>
             <button
               class="more-less toggle-btn"
               aria-expanded="false"
@@ -469,11 +472,13 @@
         <div class="card-content">
           <div class="title">
             <span class="sr-only">Priority: Low</span>
-            <div class="title-content low-priority" aria-live="polite">
+            <div class="title-content low-priority">
+              <span class="icon"></span>
               <h1 data-testid="test-todo-title">
                 Refactor Task Card Component Logic
               </h1>
             </div>
+            <div id="live-announcer" class="sr-only" role="status"></div>
             <button
               class="more-less toggle-btn"
               aria-expanded="false"

@@ -292,6 +292,18 @@ svg.time-critical {
   margin: 1em 0;
 }
 
+.title .title-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.title .title-content .icon {
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+}
+
 .card-content .title button {
   /* margin-left: 1em; */
   background: none;
